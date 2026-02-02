@@ -1,5 +1,5 @@
 import { NavLink } from "react-router";
-import { FiShoppingCart, FiCoffee } from "react-icons/fi";
+import { FiShoppingCart, FiCoffee, FiLogIn, FiUserPlus } from "react-icons/fi";
 
 const Navbar = () => {
   const navLinks = [
@@ -40,13 +40,27 @@ const Navbar = () => {
         </ul>
       </div>
 
-      {/* Cart Icon */}
-      <div className="navbar-end">
+      {/* Cart Icon & Auth Buttons */}
+      <div className="navbar-end flex items-center gap-2">
         <NavLink to="/cart" className="btn btn-ghost btn-circle">
           <div className="indicator">
             <FiShoppingCart className="text-xl" />
             <span className="badge badge-sm badge-primary indicator-item">0</span>
           </div>
+        </NavLink>
+        <NavLink
+          to="/login"
+          className="btn btn-outline btn-sm rounded-full hidden lg:inline-flex items-center gap-2 border-amber-600 text-amber-700 hover:bg-amber-50 hover:border-amber-700 transition"
+        >
+          <FiLogIn className="text-lg" />
+          <span>Login</span>
+        </NavLink>
+        <NavLink
+          to="/register"
+          className="btn btn-amber-600 btn-sm rounded-full hidden lg:inline-flex items-center gap-2 bg-amber-600 text-white border-amber-600 hover:bg-amber-700 hover:border-amber-700 transition shadow-md"
+        >
+          <FiUserPlus className="text-lg" />
+          <span>Register</span>
         </NavLink>
 
         {/* Mobile Menu */}
@@ -83,6 +97,24 @@ const Navbar = () => {
                 </NavLink>
               </li>
             ))}
+            <li>
+              <NavLink
+                to="/login"
+                className="btn btn-outline btn-sm w-full mt-2 rounded-full flex items-center gap-2 border-amber-600 text-amber-700 hover:bg-amber-50 hover:border-amber-700 transition"
+              >
+                <FiLogIn className="text-lg" />
+                <span>Login</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/register"
+                className="btn btn-amber-600 btn-sm w-full mt-1 rounded-full flex items-center gap-2 bg-amber-600 text-white border-amber-600 hover:bg-amber-700 hover:border-amber-700 transition shadow-md"
+              >
+                <FiUserPlus className="text-lg" />
+                <span>Register</span>
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>

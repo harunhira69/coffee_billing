@@ -9,7 +9,10 @@ import Menu from "../pages/Menu/Menu";
 import Cart from "../pages/Cart/Cart";
 import Checkout from "../pages/Checkout/Checkout";
 import OrderSuccess from "../pages/OrderSuccess/OrderSuccess";
+
 import NotFound from "../pages/NotFound/NotFound";
+import Login from "../pages/Auth/Login";
+import Register from "../pages/Auth/Register";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +39,14 @@ const router = createBrowserRouter([
       {
         path: "order-success",
         element: <OrderSuccess />,
+      },
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "register",
+        element: <Register />,
       },
     ],
   },

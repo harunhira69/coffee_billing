@@ -1,3 +1,129 @@
+/* Auth Pages Styles */
+
+/* Premium Auth Pages Styles */
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(120deg, #f8fafc 0%, #fbbf24 100%);
+  background-image: url('/public/coffee-bg.png'), linear-gradient(120deg, #f8fafc 0%, #fbbf24 100%);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.auth-form {
+  background: rgba(255, 255, 255, 0.98);
+  padding: 2.8rem 2.2rem 2.2rem 2.2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(251,191,36,0.10), 0 2px 8px rgba(0,0,0,0.07);
+  width: 100%;
+  max-width: 410px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  border: 1.5px solid #fbbf24;
+  position: relative;
+  overflow: hidden;
+}
+.auth-form::before {
+  content: "";
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, #fbbf24 0%, #fff0 70%);
+  opacity: 0.18;
+  z-index: 0;
+}
+
+.auth-form h2 {
+  text-align: center;
+  margin-bottom: 0.5rem;
+  color: #b45309;
+  font-weight: 800;
+  letter-spacing: 1px;
+  font-size: 2rem;
+  font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+  text-shadow: 0 2px 8px #fbbf2433;
+}
+
+.auth-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.auth-group label {
+  font-size: 1.05rem;
+  color: #b45309;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.auth-group input {
+  padding: 0.75rem 1.1rem;
+  border: 1.5px solid #fbbf24;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  outline: none;
+  background: #fff8e1;
+  color: #7c4700;
+  transition: border 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 4px #fbbf2422;
+}
+.auth-group input:focus {
+  border-color: #b45309;
+  box-shadow: 0 2px 8px #fbbf2444;
+}
+
+.auth-btn {
+  background: linear-gradient(90deg, #fbbf24 0%, #b45309 100%);
+  color: #fff;
+  border: none;
+  padding: 0.85rem 0;
+  border-radius: 10px;
+  font-size: 1.13rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  box-shadow: 0 2px 8px #fbbf2433;
+  letter-spacing: 0.5px;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.auth-btn:hover {
+  background: linear-gradient(90deg, #b45309 0%, #fbbf24 100%);
+  box-shadow: 0 4px 16px #fbbf2444;
+}
+
+.auth-error {
+  background: #fef3c7;
+  color: #b45309;
+  padding: 0.7rem 1.1rem;
+  border-radius: 8px;
+  font-size: 1.01rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  border: 1.2px solid #fbbf24;
+}
+
+.auth-switch {
+  text-align: center;
+  font-size: 1.01rem;
+  color: #b45309;
+  margin-top: 0.5rem;
+}
+.auth-switch a {
+  color: #b45309;
+  text-decoration: underline;
+  font-weight: 600;
+  margin-left: 0.2rem;
+  transition: color 0.2s;
+}
+.auth-switch a:hover {
+  color: #fbbf24;
+}
 /* Custom styles for Coffee Billing App */
 /* Most styling is handled by Tailwind CSS and DaisyUI */
 
