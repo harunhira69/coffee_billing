@@ -14,6 +14,10 @@ import NotFound from "../pages/NotFound/NotFound";
 import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
 
+// Route Guards
+import PrivateRoute from "../components/RouteGuards/PrivateRoute";
+import PublicRoute from "../components/RouteGuards/PublicRoute";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,19 +38,35 @@ const router = createBrowserRouter([
       },
       {
         path: "checkout",
-        element: <Checkout />,
+        element: (
+          <PrivateRoute>
+            <Checkout />
+          </PrivateRoute>
+        ),
       },
       {
         path: "order-success",
-        element: <OrderSuccess />,
+        element: (
+          <PrivateRoute>
+            <OrderSuccess />
+          </PrivateRoute>
+        ),
       },
       {
         path: "login",
-        element: <Login />,
+        element: (
+          <PublicRoute>
+            <Login />
+          </PublicRoute>
+        ),
       },
       {
         path: "register",
-        element: <Register />,
+        element: (
+          <PublicRoute>
+            <Register />
+          </PublicRoute>
+        ),
       },
     ],
   },

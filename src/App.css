@@ -124,6 +124,154 @@
 .auth-switch a:hover {
   color: #fbbf24;
 }
+
+/* Password wrapper with toggle */
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 2.8rem;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #b45309;
+  font-size: 1.2rem;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.password-toggle:hover {
+  color: #fbbf24;
+}
+
+/* Field error styles */
+.field-error {
+  color: #dc2626;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+.input-error {
+  border-color: #dc2626 !important;
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.15) !important;
+}
+
+/* Password strength indicator */
+.password-strength {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.strength-bar {
+  flex: 1;
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.strength-fill {
+  height: 100%;
+  transition: width 0.3s ease, background-color 0.3s ease;
+  border-radius: 3px;
+}
+
+.strength-fill.bg-red-500 {
+  background-color: #ef4444;
+}
+
+.strength-fill.bg-yellow-500 {
+  background-color: #eab308;
+}
+
+.strength-fill.bg-green-500 {
+  background-color: #22c55e;
+}
+
+.strength-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  min-width: 50px;
+  color: #6b7280;
+}
+
+/* Auth options (remember me + forgot password) */
+.auth-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.25rem;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #7c4700;
+}
+
+.remember-me input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  accent-color: #b45309;
+  cursor: pointer;
+}
+
+.forgot-password {
+  background: none;
+  border: none;
+  color: #b45309;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.forgot-password:hover {
+  color: #fbbf24;
+}
+
+.forgot-password:disabled {
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Button disabled state */
+.auth-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Google button variant */
+.auth-btn.google-btn {
+  background: #fff;
+  color: #374151;
+  border: 1.5px solid #d1d5db;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.auth-btn.google-btn:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+}
 /* Custom styles for Coffee Billing App */
 /* Most styling is handled by Tailwind CSS and DaisyUI */
 
@@ -148,4 +296,14 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #b45309;
+}
+
+/* Hide scrollbar for category tabs */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
