@@ -10,13 +10,10 @@ import {
   validateConfirmPassword,
   getPasswordStrength,
 } from "../../utils/validation";
-import {
-  getFirebaseErrorMessage,
-  authMessages,
-} from "../../utils/firebaseErrors";
+import { registerApi } from "./authApi";
 
 const Register = () => {
-  const { register, googleLogin, user, loading } = useContext(AuthContext);
+  const { user, loading, setAuth } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
@@ -37,28 +34,18 @@ const Register = () => {
   const validateForm = () => {
     const errors = {};
 
-    if (!name.trim()) {
-      errors.name = "Name is required";
-    }
+    if (!name.trim()) errors.name = "Name is required";
 
-    if (!email.trim()) {
-      errors.email = "Email is required";
-    } else if (!validateEmail(email)) {
-      errors.email = "Please enter a valid email address";
-    }
+    if (!email.trim()) errors.email = "Email is required";
+    else if (!validateEmail(email)) errors.email = "Please enter a valid email address";
 
     const passwordValidation = validatePassword(password);
-    if (!password) {
-      errors.password = "Password is required";
-    } else if (!passwordValidation.isValid) {
-      errors.password = passwordValidation.errors.join(", ");
-    }
+    if (!password) errors.password = "Password is required";
+    else if (!passwordValidation.isValid) errors.password = passwordValidation.errors.join(", ");
 
-    if (!confirmPassword) {
-      errors.confirmPassword = "Please confirm your password";
-    } else if (!validateConfirmPassword(password, confirmPassword)) {
+    if (!confirmPassword) errors.confirmPassword = "Please confirm your password";
+    else if (!validateConfirmPassword(password, confirmPassword))
       errors.confirmPassword = "Passwords do not match";
-    }
 
     setFieldErrors(errors);
     return Object.keys(errors).length === 0;
@@ -68,34 +55,29 @@ const Register = () => {
     e.preventDefault();
 
     if (!validateForm()) {
-      toast.error(authMessages.error.emptyFields);
+      toast.error("Please fix the errors and try again");
       return;
     }
 
     setIsSubmitting(true);
-
     try {
-      await register(name, email, password);
-      toast.success(authMessages.success.register);
+      const data = await registerApi({ name, email, password });
+      // data: { accessToken, user }
+
+      // ✅ store in context
+      setAuth?.({ user: data.user, accessToken: data.accessToken });
+
+      toast.success("Account created successfully");
       navigate("/");
     } catch (err) {
-      toast.error(getFirebaseErrorMessage(err));
+      toast.error(err.message || "Registration failed");
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const handleGoogleSignup = async () => {
-    setIsSubmitting(true);
-    try {
-      await googleLogin();
-      toast.success(authMessages.success.googleSignIn);
-      navigate("/");
-    } catch (err) {
-      toast.error(getFirebaseErrorMessage(err));
-    } finally {
-      setIsSubmitting(false);
-    }
+  const handleGoogleSignup = () => {
+    toast.error("Google signup is not enabled in JWT backend yet");
   };
 
   if (loading) {
@@ -106,9 +88,7 @@ const Register = () => {
     );
   }
 
-  if (user) {
-    return <Navigate to="/" replace />;
-  }
+  if (user) return <Navigate to="/" replace />;
 
   return (
     <div className="auth-container">
@@ -184,6 +164,7 @@ const Register = () => {
               {showPassword ? <FiEyeOff /> : <FiEye />}
             </button>
           </div>
+
           {password && (
             <div className="password-strength">
               <div className="strength-bar">
@@ -195,6 +176,7 @@ const Register = () => {
               <span className="strength-label">{passwordStrength.label}</span>
             </div>
           )}
+
           {fieldErrors.password && (
             <span id="password-error" className="field-error" aria-live="polite">
               {fieldErrors.password}
@@ -227,6 +209,7 @@ const Register = () => {
               {showConfirmPassword ? <FiEyeOff /> : <FiEye />}
             </button>
           </div>
+
           {fieldErrors.confirmPassword && (
             <span id="confirm-error" className="field-error" aria-live="polite">
               {fieldErrors.confirmPassword}
@@ -235,11 +218,7 @@ const Register = () => {
         </div>
 
         <button className="auth-btn" type="submit" disabled={isSubmitting}>
-          {isSubmitting ? (
-            <span className="loading loading-spinner loading-sm"></span>
-          ) : (
-            "Register"
-          )}
+          {isSubmitting ? <span className="loading loading-spinner loading-sm"></span> : "Register"}
         </button>
 
         <button
@@ -249,11 +228,7 @@ const Register = () => {
           onClick={handleGoogleSignup}
           disabled={isSubmitting}
         >
-          {isSubmitting ? (
-            <span className="loading loading-spinner loading-sm"></span>
-          ) : (
-            "Sign up with Google"
-          )}
+          Sign up with Google
         </button>
 
         <p className="auth-switch">
